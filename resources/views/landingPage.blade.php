@@ -5,18 +5,18 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>THÉ ANAO</title>
+  <title>Construction</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
   <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
+  <link href="../assets/images/logo/building.svg" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800" rel="stylesheet"> 
-  <link href="../assets/bootstrap-css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800" rel="stylesheet">
+  <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
   <!-- Template Main CSS File -->
-  <link href="../assets/css/landingPage-1.css" rel="stylesheet">
+  <link href="/assets/css/landingPage.css" rel="stylesheet">
 
 </head>
 
@@ -26,10 +26,10 @@
   <section id="hero">
     <div class="hero-container">
         <div class="hero-logo">
-          <img class="" src="../assets/images/landingPage-1-logo.png" alt="Imperial">
+          <img class="" src="../assets/images/logo/building.svg" alt="Construction" width="100vw">
         </div>
-        <h1>TONGASOA ATO AMIN'NY THÉ ANAO</h1>
-        <h2>IZAHAY DIA <span class="typed" data-typed-items="PAMOKATRA,MANOME TSIRO, FAFINARETANA" id="animateSpan"></span></h2>
+        <h1>CONSTRUCTION Home Renovation</h1>
+        <h2>NOUS SOMMES SPÉCIALISÉS DANS <span class="typed" data-typed-items="LES INFRASTRUCTURES, LA RENOVATION, LE GÉNIE CIVIL" id="animateSpan"></span></h2>
         <div class="actions">
           <a href="../affichages/administrateur-login.html" class="btn-get-started">Administration</a>
           <a href="../affichages/utilisateur-login.html" class="btn-services">Utilisateur</a>
@@ -37,7 +37,7 @@
     </div>
   </section><!-- End Hero -->
   <!-- Vendor JS Files -->
-  <script src="../assets/typed.js/typed.min.js"></script>
+  <script src="/assets/typed.js/typed.min.js"></script>
 
   <script>
   document.addEventListener("DOMContentLoaded", function () {
