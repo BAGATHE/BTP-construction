@@ -28,7 +28,7 @@
         <div class="hero-logo">
           <img class="" src="../assets/images/logo/building.svg" alt="Construction" width="100vw">
         </div>
-        <h1>CONSTRUCTION Home Renovation</h1>
+        <h1 id="big_title"><span>C</span>ONSTRUCTION <span>H</span>ome <span>R</span>enovation</h1>
         <h2>NOUS SOMMES SPÉCIALISÉS DANS <span class="typed" data-typed-items="LES INFRASTRUCTURES, LA RENOVATION, LE GÉNIE CIVIL" id="animateSpan"></span></h2>
         <div class="actions">
           <a href="../affichages/administrateur-login.html" class="btn-get-started">Administration</a>
