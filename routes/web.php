@@ -37,5 +37,5 @@ Route::group([], function () {
     });
 });
 
-/*Route ADMIN**/
+/*Route ADMIN*/
 
