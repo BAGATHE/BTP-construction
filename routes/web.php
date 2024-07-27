@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Client\ClientAuthController;
+use App\Http\controllers\Admin\AdminAuthController;
+use App\Http\controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Client\ClientDevisController;
 use Illuminate\View\View;
 /*
@@ -38,4 +40,10 @@ Route::group([], function () {
 });
 
 /*Route ADMIN*/
+Route::get('/admin/login',[AdminAuthController::class,'showLoginForm'])->name('admin.login');
+Route::post('/admin/login',[AdminAuthController::class,'login']);
+Route::delete('/admin/logout',[AdminAuthController::class,'logout'])->name('adminlogout');
 
+Route::group([],function(){
+    Route::get('/admin/home', [AdminDashboardController::class, 'index'])->name('admin.home');
+});
