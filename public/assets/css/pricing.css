@@ -3229,7 +3229,7 @@ table.projects tr td:first-child {
 }
 
 .logo_login {
-    background: url('../images/login_image_admin1.jpg');
+    background: url('/assets/images/layout_img/login_image_admin1.jpg');
     padding: 50px 0;
     background-position: center center;
     position: relative;
