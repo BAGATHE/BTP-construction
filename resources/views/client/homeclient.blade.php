@@ -23,62 +23,45 @@
           <th scope="col">Ref Devis</th>
           <th scope="col">Type de Maison</th>
           <th scope="col">Finition</th>
-          <th scope="col">date Devis</th>
           <th scope="col">date Debut</th>
           <th scope="col">Lieu </th>
           <th scope="col">Action</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-            <td scope="col">D001</td>
-        <td scope="col">Tokyo</td>
-        <td scope="col">Gold</td>
-        <td scope="col">22/12/23</td>
-        <td scope="col">07/01/24</td>
-        <td scope="col">Imeritsiatosika</td>
-        <td scope="col">
-            <button class="btn btn-info" onclick="openModal('D001')" data-bs-toggle="modal" data-bs-target="#paymentModal">
-                Effectuer payement
-            </button>
-        </td>
-        <td scope="col">
-            <a href="" >
-                Devis &nbsp;&nbsp;
-                <i class="fa fa-file  fa-1x"></i>
-            </a>
-        </td>
-
-        </tr>
+        @foreach($devis as $devi )
 
         <tr>
-            <td scope="col">D041</td>
-        <td scope="col">Tokyo</td>
-        <td scope="col">Gold</td>
-        <td scope="col">22/12/23</td>
-        <td scope="col">07/01/24</td>
-        <td scope="col">Imeritsiatosika</td>
-        <td scope="col">
-            <button class="btn btn-info" onclick="openModal('D041')" data-bs-toggle="modal" data-bs-target="#paymentModal">
-                Effectuer payement
-            </button>
-        </td>
-        <td scope="col">
-            <a href="" >
-                Devis &nbsp;&nbsp;
-                <i class="fa fa-file  fa-1x"></i>
-            </a>
-        </td>
+            <td scope="col">{{$devi->ref_devis}}</td>
+            <td scope="col">{{$devi->type_maison}}</td>
+            <td scope="col">{{$devi->finition}}</td>
+            <td scope="col">{{$devi->date_debut}}</td>
+            <td scope="col">{{$devi->lieu}}</td>
+            <td scope="col">
+                <button class="btn btn-info" onclick="openModal('{{$devi->ref_devis}}','{{$devi->type_maison}}')" data-bs-toggle="modal" data-bs-target="#paymentModal">
+                    Effectuer payement
+                </button>
+            </td>
+            <td scope="col">
+                <a href="{{ route('client.devis.exportPDF', ['type_maison' => $devi->type_maison]) }}" >
+                    Devis &nbsp;&nbsp;
+                    <i class="fa fa-file  fa-1x"></i>
+                </a>
+            </td>
 
-        </tr>
+            </tr>
 
+        @endforeach
 
       </tbody>
     </table>
       </div>
       <div class="card-footer text-body-secondary">
-        <h5 class="text-center">footer</h5>
-
+        @if(session('success'))
+        <div class="alert alert-success" role="alert">
+            {{session('success')}}
+        </div>
+        @endif
       </div>
     </div>
 
@@ -97,6 +80,7 @@
             <div class="modal-body">
                 <form id="paymentForm">
                     <div class="mb-3">
+                        <input type='hidden' id="type_maison" value="" name="type_maison">
                         <label for="reference" class="form-label">Référence Devis</label>
                         <input type="text" class="form-control" id="reference" name="reference" readonly>
                     </div>
@@ -116,15 +100,46 @@
 </div>
 
 <script>
-    function openModal(reference) {
+    function openModal(reference,type_maison) {
         document.getElementById('reference').value = reference;
+        document.getElementById('type_maison').value = type_maison;
+
     }
 
     document.getElementById('paymentForm').addEventListener('submit', function(event) {
-        event.preventDefault();
-        // Handle form submission here
-        alert('Form submitted with reference: ' + document.getElementById('reference').value);
-        // You can add AJAX code here to submit the form data to the backend
+    event.preventDefault();
+
+    // Récupérer les données du formulaire
+    const reference = document.getElementById('reference').value;
+    const type_maison = document.getElementById('type_maison').value;
+    const amount = document.getElementById('amount').value;
+    const date = document.getElementById('paymentDate').value;
+
+    // Préparer les données pour l'envoi
+    const formData = new FormData();
+    formData.append('reference', reference);
+    formData.append('type_maison', type_maison);
+    formData.append('amount',amount);
+    formData.append('date',date);
+
+    // Envoyer les données avec fetch
+    fetch('/client/payement', { // Remplacez '/your-controller-route' par l'URL de votre route
+        method: 'POST',
+        body: formData,
+        headers: {
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Gérer la réponse du serveur
+        alert('Message: ' + data.message);
+    })
+    .catch(error => {
+        // Gérer les erreurs
+        console.error('Error:', error);
     });
+});
+
 </script>
 @endsection

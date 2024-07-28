@@ -20,7 +20,7 @@
              <div class="cont_table_price">
                 <ul>
                    <li>{{$description}}</li>
-                   <li>{{$surface}}</li>
+                   <li>{{$surface}}m²</li>
                 </ul>
              </div>
           </div>
