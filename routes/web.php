@@ -33,10 +33,8 @@ Route::group([], function () {
     Route::get('/client/home', [ClientDevisController::class, 'index'])->name('client.home');
     Route::get('/client/devis', [ClientDevisController::class, 'showDevisForm'])->name('client.devis.create');
     Route::post('/client/devis', [ClientDevisController::class, 'storeDevis']);
-
-    Route::get('/client/pdf', function(){
-       return view('client.devispdf');
-    });
+    Route::get('/devis/{type_maison}/export-pdf', [ClientDevisController::class, 'exportPDF'])->name('client.devis.exportPDF');
+    Route::post('/client/payement',[ClientDevisController::class,'handlePayment']);
 });
 
 /*Route ADMIN*/

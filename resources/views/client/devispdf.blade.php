@@ -3,17 +3,39 @@
 
 <head>
     <style>
-        table,
-        th,
-        td {
+        table, th, td {
             border: 1px solid black;
             border-collapse: collapse;
+            width: 100%; /* Assurez-vous que la table prend toute la largeur disponible */
         }
 
-        th,
-        td {
+        th, td {
             padding: 5px;
             text-align: left;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        ul li {
+            margin-bottom: 5px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .header ul {
+            margin: 0;
+        }
+
+        .container {
+            width: 100%;
         }
     </style>
 </head>
@@ -23,14 +45,14 @@
     <div>
         <div style="display: flex;gap:30vw;" >
             <ul>
-                <li>Reference:   </li>
-                <li>Type Maison: </li>
-                <li>Finition: </li>
-                <li>Date debut:  </li>
-                <li>Date fin: </li>
-                <li>Lieu: </li>
+                <li>Reference:   {{ $global_devis->ref_devis }}</li>
+                <li>Type Maison: {{ $global_devis->type_maison }}</li>
+                <li>Finition:  {{ $global_devis->finition }}</li>
+                <li>Date debut: {{ $global_devis->date_debut }}</li>
+                <li>Date fin: {{ $global_devis->date_fin }}</li>
+                <li>Lieu: {{ $global_devis->lieu }}</li>
             </ul>
-            <img  src="/assets/images/logo/building.svg" alt="logo" width="80vw" alt="">
+            <img  src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCEtLSBVcGxvYWRlZCB0bzogU1ZHIFJlcG8sIHd3dy5zdmdyZXBvLmNvbSwgR2VuZXJhdG9yOiBTVkcgUmVwbyBNaXhlciBUb29scyAtLT4NCjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgDQoJIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxyZWN0IHg9IjUxLjI3MyIgeT0iMTQ3LjUxOSIgc3R5bGU9ImZpbGw6I0ZGQzQ3MzsiIHdpZHRoPSIxMDguNjY5IiBoZWlnaHQ9IjMzMS4xOTEiLz4NCjxyZWN0IHg9IjM1Mi4wNTciIHk9IjE0Ni40MzIiIHN0eWxlPSJmaWxsOiNGRkE5MUY7IiB3aWR0aD0iMTA4LjY2OSIgaGVpZ2h0PSIzMzEuMTkxIi8+DQo8cmVjdCB4PSIxNDQuMjY5IiB5PSIzMy4yOSIgc3R5bGU9ImZpbGw6I0FFQURCMzsiIHdpZHRoPSIyMjMuNDYyIiBoZWlnaHQ9IjQyOS43NDYiLz4NCjxyZWN0IHg9IjI1NS4zMSIgeT0iMzMuMjkiIHN0eWxlPSJmaWxsOiM4Qjg4OTI7IiB3aWR0aD0iMTEyLjQyMSIgaGVpZ2h0PSI0MjkuNzQ2Ii8+DQo8cmVjdCB4PSIyMzAuNCIgeT0iMzYzLjQ3OCIgc3R5bGU9ImZpbGw6I0ZGRkZGRjsiIHdpZHRoPSI1MS4yIiBoZWlnaHQ9Ijk5LjU1OCIvPg0KPHJlY3QgeD0iMjU1LjMxIiB5PSIzNjMuNDc4IiBzdHlsZT0iZmlsbDojQzhDNkNEOyIgd2lkdGg9IjI2LjI5IiBoZWlnaHQ9Ijk5LjU1OCIvPg0KPGc+DQoJPHJlY3QgeD0iMTg4LjE3NiIgeT0iNzUuMDk3IiBzdHlsZT0iZmlsbDojRkZGRkZGOyIgd2lkdGg9IjMyLjE5MiIgaGVpZ2h0PSIzMi4xOTIiLz4NCgk8cmVjdCB4PSIyMzkuOTA5IiB5PSI3NS4wOTciIHN0eWxlPSJmaWxsOiNGRkZGRkY7IiB3aWR0aD0iMzIuMTgzIiBoZWlnaHQ9IjMyLjE5MyIvPg0KCTxyZWN0IHg9IjI5MS42MzEiIHk9Ijc1LjA5NyIgc3R5bGU9ImZpbGw6I0ZGRkZGRjsiIHdpZHRoPSIzMi4xODMiIGhlaWdodD0iMzIuMTkzIi8+DQoJPHJlY3QgeD0iMTg4LjE3NiIgeT0iMTI1Ljc3NCIgc3R5bGU9ImZpbGw6I0ZGRkZGRjsiIHdpZHRoPSIzMi4xOTIiIGhlaWdodD0iMzIuMTkyIi8+DQoJPHJlY3QgeD0iMjM5LjkwOSIgeT0iMTI1Ljc3NCIgc3R5bGU9ImZpbGw6I0ZGRkZGRjsiIHdpZHRoPSIzMi4xODMiIGhlaWdodD0iMzIuMTkzIi8+DQoJPHJlY3QgeD0iMjkxLjYzMSIgeT0iMTI1Ljc3NCIgc3R5bGU9ImZpbGw6I0ZGRkZGRjsiIHdpZHRoPSIzMi4xODMiIGhlaWdodD0iMzIuMTkzIi8+DQoJPHJlY3QgeD0iMTg4LjE3NiIgeT0iMTc2LjQ1MiIgc3R5bGU9ImZpbGw6I0ZGRkZGRjsiIHdpZHRoPSIzMi4xOTIiIGhlaWdodD0iMzIuMTkyIi8+DQoJPHJlY3QgeD0iMjM5LjkwOSIgeT0iMTc2LjQ1MiIgc3R5bGU9ImZpbGw6I0ZGRkZGRjsiIHdpZHRoPSIzMi4xODMiIGhlaWdodD0iMzIuMTkzIi8+DQoJPHJlY3QgeD0iMjkxLjYzMSIgeT0iMTc2LjQ1MiIgc3R5bGU9ImZpbGw6I0ZGRkZGRjsiIHdpZHRoPSIzMi4xODMiIGhlaWdodD0iMzIuMTkzIi8+DQoJPHJlY3QgeD0iMTg4LjE3NiIgeT0iMjI3LjEyOSIgc3R5bGU9ImZpbGw6I0ZGRkZGRjsiIHdpZHRoPSIzMi4xOTIiIGhlaWdodD0iMzIuMTkyIi8+DQoJPHJlY3QgeD0iMjM5LjkwOSIgeT0iMjI3LjEyOSIgc3R5bGU9ImZpbGw6I0ZGRkZGRjsiIHdpZHRoPSIzMi4xODMiIGhlaWdodD0iMzIuMTkzIi8+DQoJPHJlY3QgeD0iMjkxLjYzMSIgeT0iMjI3LjEyOSIgc3R5bGU9ImZpbGw6I0ZGRkZGRjsiIHdpZHRoPSIzMi4xODMiIGhlaWdodD0iMzIuMTkzIi8+DQo8L2c+DQo8Zz4NCgk8cmVjdCB4PSIxNDQuMjY5IiB5PSIzMDAuMjUxIiBzdHlsZT0iZmlsbDojNTc1NTVDOyIgd2lkdGg9IjIyMy40NjIiIGhlaWdodD0iMzEuMzQ3Ii8+DQoJPHJlY3QgeT0iNDQ3LjM2MyIgc3R5bGU9ImZpbGw6IzU3NTU1QzsiIHdpZHRoPSI1MTIiIGhlaWdodD0iMzEuMzQ3Ii8+DQo8L2c+DQo8cmVjdCB4PSIyNTUuMzEiIHk9IjMwMC4yNTEiIHN0eWxlPSJmaWxsOiMyQjI5MkM7IiB3aWR0aD0iMTEyLjQyMSIgaGVpZ2h0PSIzMS4zNDciLz4NCjxnPg0KCTxyZWN0IHg9IjI1NS4zMSIgeT0iNzUuMDk3IiBzdHlsZT0iZmlsbDojQzhDNkNEOyIgd2lkdGg9IjE2Ljc4MSIgaGVpZ2h0PSIzMi4xOTMiLz4NCgk8cmVjdCB4PSIyNTUuMzEiIHk9IjEyNS43NzQiIHN0eWxlPSJmaWxsOiNDOEM2Q0Q7IiB3aWR0aD0iMTYuNzgxIiBoZWlnaHQ9IjMyLjE5MyIvPg0KCTxyZWN0IHg9IjI1NS4zMSIgeT0iMTc2LjQ1MiIgc3R5bGU9ImZpbGw6I0M4QzZDRDsiIHdpZHRoPSIxNi43ODEiIGhlaWdodD0iMzIuMTkzIi8+DQoJPHJlY3QgeD0iMjU1LjMxIiB5PSIyMjcuMTI5IiBzdHlsZT0iZmlsbDojQzhDNkNEOyIgd2lkdGg9IjE2Ljc4MSIgaGVpZ2h0PSIzMi4xOTMiLz4NCgk8cmVjdCB4PSIyOTEuNjMxIiB5PSI3NS4wOTciIHN0eWxlPSJmaWxsOiNDOEM2Q0Q7IiB3aWR0aD0iMzIuMTgzIiBoZWlnaHQ9IjMyLjE5MyIvPg0KCTxyZWN0IHg9IjI5MS42MzEiIHk9IjEyNS43NzQiIHN0eWxlPSJmaWxsOiNDOEM2Q0Q7IiB3aWR0aD0iMzIuMTgzIiBoZWlnaHQ9IjMyLjE5MyIvPg0KCTxyZWN0IHg9IjI5MS42MzEiIHk9IjE3Ni40NTIiIHN0eWxlPSJmaWxsOiNDOEM2Q0Q7IiB3aWR0aD0iMzIuMTgzIiBoZWlnaHQ9IjMyLjE5MyIvPg0KCTxyZWN0IHg9IjI5MS42MzEiIHk9IjIyNy4xMjkiIHN0eWxlPSJmaWxsOiNDOEM2Q0Q7IiB3aWR0aD0iMzIuMTgzIiBoZWlnaHQ9IjMyLjE5MyIvPg0KPC9nPg0KPHJlY3QgeD0iMjU1LjMxIiB5PSI0NDcuMzYzIiBzdHlsZT0iZmlsbDojMkIyOTJDOyIgd2lkdGg9IjI1Ni42OSIgaGVpZ2h0PSIzMS4zNDciLz4NCjwvc3ZnPg==" alt="logo" width="80vw" alt="">
         </div>
 
     <table>
@@ -42,137 +64,22 @@
             <th>PU</th>
             <th>TOTAL</th>
         </tr>
+        @foreach($devis as $devi )
         <tr>
-            <td>000 - TRAVAUX PREPARATIORE</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>{{$devi->code_travaux}}</td>
+            <td>{{$devi->type_travaux}}</td>
+            <td>{{$devi->unite}}</td>
+            <td>{{$devi->quantite}}</td>
+            <td>{{$devi->prix_unitaire}}</td>
+            <td>{{$devi->quantite * $devi->prix_unitaire }}</td>
         </tr>
+
+        @endforeach
+
+
         <tr>
-            <td>001</td>
-            <td>mur de soutenement et demi Cloture ht 1m</td>
-            <td>m3</td>
-            <td>26,98</td>
-            <td>190 000,00</td>
-            <td>5 126 200,00</td>
-        </tr>
-        <tr>
-            <td colspan="5">TOTAL TRAVAUX PREPARATOIRE</td>
-            <td>5 126 200,00</td>
-        </tr>
-        <tr>
-            <td>100-TRAVAUX DE TERRASSEMENT</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>101</td>
-            <td>Décapage des terrains meubles</td>
-            <td>m2</td>
-            <td>101,36</td>
-            <td>3 072,87</td>
-            <td>311 468,69</td>
-        </tr>
-        <tr>
-            <td>102</td>
-            <td>Dressage du plateforme</td>
-            <td>m2</td>
-            <td>101,36</td>
-            <td>3 736,26</td>
-            <td>378 711,32</td>
-        </tr>
-        <tr>
-            <td>103</td>
-            <td>Fouille d'ouvrage terrain ferme</td>
-            <td>m3</td>
-            <td>24,44</td>
-            <td>9 390,93</td>
-            <td>229 514,29</td>
-        </tr>
-        <tr>
-            <td>104</td>
-            <td>Remblai d'ouvrage</td>
-            <td>m3</td>
-            <td>15,59</td>
-            <td>37 563,26</td>
-            <td>585 761,49</td>
-        </tr>
-        <tr>
-            <td>105</td>
-            <td>Travaux d'implantation</td>
-            <td>fft</td>
-            <td>1,00</td>
-            <td>152 656,00</td>
-            <td>152 656,00</td>
-        </tr>
-        <tr>
-            <td colspan="5">TOTAL TRAVAUX DE TERRASSEMENT</td>
-            <td>1 658 111,79</td>
-        </tr>
-        <tr>
-            <td>200-TRAVAUX EN INFRASTRUCTURE</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>201</td>
-            <td>maçonnerie de moellons, ep= 35cm</td>
-            <td>m3</td>
-            <td>9,62</td>
-            <td>172 114,40</td>
-            <td>1 656 299,89</td>
-        </tr>
-        <tr>
-            <td>202</td>
-            <td>beton armée dosée à 350kg/m3:</td>
-            <td>m3</td>
-            <td>0,53</td>
-            <td>573 215,80</td>
-            <td>300 938,30</td>
-        </tr>
-        <tr>
-            <td>203</td>
-            <td>remblai technique</td>
-            <td>m3</td>
-            <td>15,59</td>
-            <td>37 563,26</td>
-            <td>585 761,49</td>
-        </tr>
-        <tr>
-            <td>204</td>
-            <td>herrissonage ep=10</td>
-            <td>m3</td>
-            <td>7,80</td>
-            <td>73 245,40</td>
-            <td>571 094,40</td>
-        </tr>
-        <tr>
-            <td>205</td>
-            <td>beton ordinaire dosée à 300kg/m3 pour forr</td>
-            <td>m3</td>
-            <td>5,46</td>
-            <td>487 815,80</td>
-            <td>2 662 449,86</td>
-        </tr>
-        <tr>
-            <td>206</td>
-            <td>chape de 2cm</td>
-            <td>m3</td>
-            <td>77,97</td>
-            <td>33 566,54</td>
-            <td>2 617 182,77</td>
-        </tr>
-        <tr>
-            <td colspan="5">TOTAL TRAVAUX EN INFRASTRUCTURE</td>
-            <td>10 115 666,98</td>
+            <td colspan="5">TOTAL Devis</td>
+            <td>{{$total}}</td>
         </tr>
     </table>
     </div>
