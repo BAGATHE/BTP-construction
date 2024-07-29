@@ -63,6 +63,8 @@ class ClientDevisController extends Controller
             'date_reference'=>$date_devis,
             'date_fin'=>$date_fin,
             'lieu'=>$request->input('lieu'),
+            'prix_total_travaux'=> Maison_travaux:: calculateTotalForTypeMaisonWithFinition($request->input('type_maison'),$request->input('type_finition'))
+
         ]);
         return to_route('client.home')->with('success','the devis was created');
     }
@@ -88,11 +90,10 @@ class ClientDevisController extends Controller
             'amount' =>'required|numeric',
             'date' =>'required|date',
             'reference' => 'required|string|max:255',
-            'type_maison' => 'required|string'
         ]);
 
         // Traiter les données
-        $type_maison = $validatedData['type_maison'];
+
         $montant = $validatedData['amount'];
         $ref_devis = $validatedData['reference'];
         $date_paiement = $validatedData['date'];
@@ -100,7 +101,7 @@ class ClientDevisController extends Controller
 
         $devis = Devis::where('ref_devis', $ref_devis)->firstOrFail();
         $total_paiements = $devis->sommePaiements();
-        $total_prix_travaux = Maison_travaux::calculateTotalForTypeMaison($type_maison);
+        $total_prix_travaux = $devis->prix_total_travaux;
         $reste = $total_prix_travaux - $total_paiements;
 
 

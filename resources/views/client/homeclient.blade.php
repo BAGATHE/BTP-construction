@@ -38,7 +38,7 @@
             <td scope="col">{{$devi->date_debut}}</td>
             <td scope="col">{{$devi->lieu}}</td>
             <td scope="col">
-                <button class="btn btn-info" onclick="openModal('{{$devi->ref_devis}}','{{$devi->type_maison}}')" data-bs-toggle="modal" data-bs-target="#paymentModal">
+                <button class="btn btn-info" onclick="openModal('{{$devi->ref_devis}}')" data-bs-toggle="modal" data-bs-target="#paymentModal">
                     Effectuer payement
                 </button>
             </td>
@@ -80,7 +80,6 @@
             <div class="modal-body">
                 <form id="paymentForm">
                     <div class="mb-3">
-                        <input type='hidden' id="type_maison" value="" name="type_maison">
                         <label for="reference" class="form-label">Référence Devis</label>
                         <input type="text" class="form-control" id="reference" name="reference" readonly>
                     </div>
@@ -100,9 +99,8 @@
 </div>
 
 <script>
-    function openModal(reference,type_maison) {
+    function openModal(reference) {
         document.getElementById('reference').value = reference;
-        document.getElementById('type_maison').value = type_maison;
 
     }
 
@@ -111,14 +109,12 @@
 
     // Récupérer les données du formulaire
     const reference = document.getElementById('reference').value;
-    const type_maison = document.getElementById('type_maison').value;
     const amount = document.getElementById('amount').value;
     const date = document.getElementById('paymentDate').value;
 
     // Préparer les données pour l'envoi
     const formData = new FormData();
     formData.append('reference', reference);
-    formData.append('type_maison', type_maison);
     formData.append('amount',amount);
     formData.append('date',date);
 

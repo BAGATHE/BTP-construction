@@ -20,6 +20,7 @@ class Devis extends Model
      'date_reference',
      'date_fin',
      'lieu',
+     'prix_total_travaux'
     ];
 
     /**
