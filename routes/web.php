@@ -44,4 +44,6 @@ Route::delete('/admin/logout',[AdminAuthController::class,'logout'])->name('admi
 
 Route::group([],function(){
     Route::get('/admin/home', [AdminDashboardController::class, 'index'])->name('admin.home');
+    Route::get('/admin/travaux',[AdminDashboardController::class,'travaux']);
+    Route::post('/admin/statistiquedevispaiement',[AdminDashboardController::class,'statDevisPaiement']);
 });

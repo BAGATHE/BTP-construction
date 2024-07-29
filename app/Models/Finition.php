@@ -13,4 +13,17 @@ class Finition extends Model
           'prix',
           'taux_finition'
     ];
+
+
+     /**
+     * recuperer le pourcentage de finition
+     *
+     * @param string $type_finition
+     * @return float|null
+     */
+
+     public static function getPercentageFinition($type_finition){
+        $finition =  self::where('type_finition',$type_finition)->first(['taux_finition']);
+        return $finition ? $finition->taux_finition : 0;
+    }
 }
