@@ -16,16 +16,16 @@ class AdminDashboardController extends Controller
 
           $date_now = Carbon::now()->format('Y-m-d');
           $devis = Devis::with('paiements')->where('date_fin','>=',$date_now)->get();
-          $montant_total_devis = 0;
+          $montant_total_devis = Devis::SUM('prix_total_travaux');
+
           // Calculer la somme des paiements pour chaque devis
          foreach ($devis as $devi) {
-            $montant_total_devis = $montant_total_devis + $devi->prix_total_travaux;
             $devi->somme_paiements = $devi->sommePaiements();
         }
 
+        $somme_paiement_effectuer = Paiement::sommePaiementEffectuer();
 
-
-       return view('admin.homeadmin',compact('devis','montant_total_devis'));
+       return view('admin.homeadmin',compact('devis','montant_total_devis','somme_paiement_effectuer'));
 
     }
 

@@ -25,15 +25,10 @@
        </div>
        <div class="col-md-6 col-lg-3">
           <div class="full counter_section margin_bottom_30">
-             <div class="couter_icon">
-                <div>
-                   <i class="fa fa-clock-o blue1_color"></i>
-                </div>
-             </div>
              <div class="counter_no">
                 <div>
-                   <p class="total_no">123.50</p>
-                   <p class="head_couter">Average Time</p>
+                   <p class="head_couter">Somme paiement</p>
+                   <p class="total_no">{{number_format($somme_paiement_effectuer,2,'.',' ')}}</p>
                 </div>
              </div>
           </div>

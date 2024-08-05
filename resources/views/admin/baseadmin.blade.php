@@ -22,7 +22,7 @@
       <!-- responsive css -->
       <link rel="stylesheet" href="/assets/css/responsive.css" />
       <link href="/assets/css/font-awesome.min.css"  rel="stylesheet">
-      
+
 
 
    </head>
@@ -52,12 +52,12 @@
                   <h4>General</h4>
                   <ul class="list-unstyled components">
 
-                     <li  class="active"><a href="#"><i class="fa fa-dashboard yellow_color"></i> <span>Dashboard</span></a></li>
-                     <li><a href="#"><i class="fa fa-clock-o orange_color"></i> <span>Widgets</span></a></li>
-                     <li><a href="tables.html"><i class="fa fa-table purple_color2"></i> <span>Tables</span></a></li>
-                     <li><a href="map.html"><i class="fa fa-map purple_color2"></i> <span>Map</span></a></li>
-                     <li><a href="charts.html"><i class="fa fa-bar-chart-o green_color"></i> <span>Charts</span></a></li>
-                     <li><a href="settings.html"><i class="fa fa-cog yellow_color"></i> <span>Settings</span></a></li>
+                     <li  class="active"><a href="{{route('admin.home')}}"><i class="fa fa-dashboard yellow_color"></i> <span>Dashboard</span></a></li>
+                     <li><a href="{{ route('admin.maison_travaux_devis')}}"><i class="fa fa-table purple_color2"></i> <span>import Travaux et devis</span></a></li>
+                     <li><a href="{{route('admin.storecsvPaiement')}}"><i class="fa fa-table purple_color2"></i> <span>import paiement</span></a></li>
+                     <li><a href="{{route('admin.typetravaux')}}"><i class="fa fa-map purple_color2"></i> <span>Type de Travaux</span></a></li>
+                     <li><a href="{{ route('admin.finition')}}"><i class="fa fa-bar-chart-o green_color"></i> <span>Type de Finition</span></a></li>
+                     <li><a href=""><i class="fa fa-cog yellow_color"></i> <span>Deconnection</span></a></li>
                   </ul>
                </div>
             </nav>

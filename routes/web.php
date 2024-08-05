@@ -7,6 +7,9 @@ use App\Http\controllers\Admin\AdminAuthController;
 use App\Http\controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Client\ClientDevisController;
 use Illuminate\View\View;
+use App\Http\Controllers\Admin\AdminImportController;
+use App\Http\Controllers\Admin\TypeTravauxController;
+use App\Http\Controllers\Admin\FinitionController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -44,6 +47,23 @@ Route::delete('/admin/logout',[AdminAuthController::class,'logout'])->name('admi
 
 Route::group([],function(){
     Route::get('/admin/home', [AdminDashboardController::class, 'index'])->name('admin.home');
+
     Route::get('/admin/travaux',[AdminDashboardController::class,'travaux']);
+
     Route::post('/admin/statistiquedevispaiement',[AdminDashboardController::class,'statDevisPaiement']);
+
+    Route::get('/admin/import-devis-maison-travaux',[AdminImportController::class,'pageImportTravauxDevis'])->name('admin.maison_travaux_devis');
+    Route::post('/admin/import-devis-maison-travaux',[AdminImportController::class,'storeDataCSV']);
+
+    Route::get('/admin/import-paiement',[AdminImportController::class,'pageImportPaiement'])->name('admin.storecsvPaiement');
+    Route::post('/admin/import-paiement',[AdminImportController::class,'storeCsvPaiement']);
+
+    Route::get('/admin/type-travaux', [TypeTravauxController::class, 'index'])->name('admin.typetravaux');
+    Route::get('/admin/type-travaux/{travaux}/edit', [TypeTravauxController::class, 'edit'])->name('admin.typetravaux.edit');
+    Route::put('/admin/type-travaux/{travaux}', [TypeTravauxController::class, 'update'])->name('admin.typetravaux.update');
+
+    Route::get('/admin/finition',[FinitionController::class,'index'])->name('admin.finition');
+    Route::get('/admin/finition/{finition}/edit', [FinitionController::class,'edit'])->name('admin.finition.edit');
+    Route::put('/admin/finition/{finition}', [FinitionController::class,'update'])->name('admin.finition.update');
+
 });

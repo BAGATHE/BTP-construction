@@ -18,6 +18,8 @@ return new class extends Migration
             $table->integer('surface');
             $table->integer('duree_travaux');
             $table->timestamps();
+
+            $table->unique(['type_maison', 'description', 'surface', 'duree_travaux']);
         });
     }
 

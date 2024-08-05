@@ -10,6 +10,7 @@ use App\Models\Paiement;
 class Devis extends Model
 {
     use HasFactory;
+    protected $table = 'devis';
     protected $fillable=[
      'numero',
      'ref_devis',
@@ -40,5 +41,7 @@ class Devis extends Model
     {
         return $this->paiements()->sum('montant');
     }
+
+
 }
 
