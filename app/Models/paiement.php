@@ -39,4 +39,12 @@ class Paiement extends Model
 
         return $letter . $digits;
     }
+
+    /**
+     * montant total payement deja effectuer
+     * @return float
+     */
+    public static function sommePaiementEffectuer(){
+     return self::sum('montant');
+    }
 }

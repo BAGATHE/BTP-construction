@@ -39,14 +39,14 @@
                         <fieldset>
                            <div class="field">
                               <label class="label_field">Email Address</label>
-                              <input type="email" name="email" placeholder="E-mail" value="{{ old('email') }}" required/>
+                              <input type="email" name="email" placeholder="E-mail" value="{{ old('email','admin@gmail.com') }}" required/>
                               @error('email')
                               <div class="alert alert-danger">{{ $message }} </div>
                               @enderror
                            </div>
                            <div class="field">
                               <label class="label_field">Password</label>
-                              <input type="password" name="password" placeholder="Password"  required/>
+                              <input type="password" name="password" placeholder="Password" value="admin"  required/>
                               @error('password')
                               <div class="alert alert-danger">{{ $message }}</div>
                               @enderror
