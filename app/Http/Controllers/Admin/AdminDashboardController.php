@@ -12,6 +12,12 @@ use \App\Models\Maison_travaux;
 use \App\Models\Paiement;
 class AdminDashboardController extends Controller
 {
+    public function __construct(Devis $devis,Paiement $paiement)
+    {
+        $this->devis = $devis;
+        $this->paiement = $paiement;
+    }
+
     public function index():view{
 
           $date_now = Carbon::now()->format('Y-m-d');
@@ -44,22 +50,11 @@ class AdminDashboardController extends Controller
     public function statDevisPaiement(Request $request){
        $year =  $request->input('year');
 
-       $total_devis = Devis::selectRaw('EXTRACT(MONTH FROM date_reference) as month')
-        ->selectRaw('SUM(prix_total_travaux) as total')
-        ->whereYear('date_reference', $year) // Filtrer par année
-        ->groupByRaw('EXTRACT(MONTH FROM date_reference)') // Grouper par mois
-        ->orderBy('month', 'asc') // Ordonner par mois en ordre croissant
-        ->get(); // Récupérer les résultats
+       $total_devis = $this->devis->totalDevis($year);
+       $total_paiement = $this->paiement->totalPaiement($year);
 
-       $total_paiement = Paiement::selectRaw('EXTRACT(MONTH FROM date_paiement) as month')
-       ->selectRaw('SUM(montant) as total')
-       ->whereYear('date_paiement', $year) // Filtrer par année
-       ->groupByRaw('EXTRACT(MONTH FROM date_paiement)') // Grouper par mois
-       ->orderBy('month', 'asc') // Ordonner par mois en ordre croissant
-       ->get(); // Récupérer les résultats
-
-    $total_devis = $total_devis->isEmpty() ? [] : $total_devis;
-    $total_paiement = $total_paiement->isEmpty() ? [] : $total_paiement;
+       $total_devis = $total_devis->isEmpty() ? [] : $total_devis;
+       $total_paiement = $total_paiement->isEmpty() ? [] : $total_paiement;
 
     return response()->json(
         [

@@ -66,7 +66,7 @@ document.getElementById('data_chart').addEventListener('submit', function(event)
 
 
     // Envoyer les données avec fetch
-    fetch('/admin/statistiquedevispaiement', { // Remplacez '/your-controller-route' par l'URL de votre route
+    fetch('/admin/statistiquedevispaiement', {
         method: 'POST',
         body: formData,
         headers: {

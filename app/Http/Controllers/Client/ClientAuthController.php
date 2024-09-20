@@ -34,4 +34,9 @@ class ClientAuthController extends Controller
     return redirect()->intended(route('client.home'));
 }
 
+public function logout(){
+        Auth::logout();
+        return to_route('client.login');
+}
+
 }

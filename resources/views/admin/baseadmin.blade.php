@@ -57,7 +57,13 @@
                      <li><a href="{{route('admin.storecsvPaiement')}}"><i class="fa fa-table purple_color2"></i> <span>import paiement</span></a></li>
                      <li><a href="{{route('admin.typetravaux')}}"><i class="fa fa-map purple_color2"></i> <span>Type de Travaux</span></a></li>
                      <li><a href="{{ route('admin.finition')}}"><i class="fa fa-bar-chart-o green_color"></i> <span>Type de Finition</span></a></li>
-                     <li><a href=""><i class="fa fa-cog yellow_color"></i> <span>Deconnection</span></a></li>
+                     <li>
+                      <form action="{{route('admin.logout')}}" method="post">
+                          @method('DELETE')
+                          @csrf
+                          <button type="submit" class="btn btn-danger"> <i class="fa fa-cog yellow_color"></i> <span>Deconnection</span></button>
+                      </form>
+                     </li>
                   </ul>
                </div>
             </nav>

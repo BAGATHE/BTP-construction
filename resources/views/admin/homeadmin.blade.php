@@ -205,8 +205,8 @@
 
     const url = `/admin/travaux?type_maison=${encodeURIComponent(type_maison)}`;
 
-    // Envoyer les données avec fetch
-    fetch(url, { // Remplacez '/your-controller-route' par l'URL de votre route
+
+    fetch(url, {
         method: 'get',
         headers: {
             'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
@@ -235,7 +235,7 @@
     })
     .catch(error => {
         // Gérer les erreurs
-        console.error('Error:', error);
+        alert(error);
     });
 
     }

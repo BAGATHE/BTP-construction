@@ -53,10 +53,15 @@
                           </li>
                         </ul>
                         <div class="d-lg-flex col-lg-3 justify-content-lg-end">
-                            <button class="btn btn-outline-warning d-inline-flex align-items-center" type="button">
-                                Deconnection &nbsp;&nbsp;
-                                <i class="fa fa-external-link-square fa-2x "></i>
-                              </button>
+                            <form action="{{route('client.logout')}}" method="POST">
+                                @method('DELETE')
+                                @csrf
+                                <button class="btn btn-outline-warning d-inline-flex align-items-center" type="submit">
+                                    Deconnection
+                                    <i class="fa fa-external-link-square fa-2x "></i>
+                                </button>
+                            </form>
+
                         </div>
                       </div>
                     </div>

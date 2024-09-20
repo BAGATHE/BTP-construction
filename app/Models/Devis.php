@@ -42,6 +42,15 @@ class Devis extends Model
         return $this->paiements()->sum('montant');
     }
 
+    public function totalDevis($year){
+       return Devis::selectRaw('EXTRACT(MONTH FROM date_reference) as month')
+            ->selectRaw('SUM(prix_total_travaux) as total')
+            ->whereYear('date_reference', $year)
+            ->groupByRaw('EXTRACT(MONTH FROM date_reference)')
+            ->orderBy('month', 'asc')
+            ->get();
+    }
+
 
 }
 

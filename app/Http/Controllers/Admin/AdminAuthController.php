@@ -19,7 +19,6 @@ class AdminAuthController extends Controller
     public function login(AdminLoginFormRequest $request){
         $credentials = $request->validated();
         $credentials['role']='admin';
-
         if(Auth::attempt($credentials)){
             $request->session()->regenerate();
             return redirect()->intended(route('admin.home'));
@@ -27,5 +26,10 @@ class AdminAuthController extends Controller
 
         return back()->withErrors(['email'=> 'Les informations d\'identification fournies sont incorrectes.']);
 
+    }
+
+    public function logout(){
+        Auth::logout();
+        return to_route("admin.login");
     }
 }
