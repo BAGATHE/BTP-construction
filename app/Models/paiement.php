@@ -47,4 +47,13 @@ class Paiement extends Model
     public static function sommePaiementEffectuer(){
      return self::sum('montant');
     }
+
+    public function totalPaiement($year){
+        return Paiement::selectRaw('EXTRACT(MONTH FROM date_paiement) as month')
+            ->selectRaw('SUM(montant) as total')
+            ->whereYear('date_paiement', $year)
+            ->groupByRaw('EXTRACT(MONTH FROM date_paiement)')
+            ->orderBy('month', 'asc')
+            ->get();
+    }
 }

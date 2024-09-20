@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('devis', function (Blueprint $table) {
             $table->id();
             $table->string('numero');
-            $table->string('ref_devis');
+            $table->string('ref_devis')->unique();
             $table->string('type_maison');
             $table->string('finition');
             $table->decimal('taux_finition',5,2);

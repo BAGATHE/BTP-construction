@@ -43,14 +43,12 @@ Route::group([], function () {
 /*Route ADMIN*/
 Route::get('/admin/login',[AdminAuthController::class,'showLoginForm'])->name('admin.login');
 Route::post('/admin/login',[AdminAuthController::class,'login']);
-Route::delete('/admin/logout',[AdminAuthController::class,'logout'])->name('adminlogout');
+Route::delete('/admin/logout',[AdminAuthController::class,'logout'])->name('admin.logout');
 
 Route::group([],function(){
     Route::get('/admin/home', [AdminDashboardController::class, 'index'])->name('admin.home');
 
-    Route::get('/admin/travaux',[AdminDashboardController::class,'travaux']);
 
-    Route::post('/admin/statistiquedevispaiement',[AdminDashboardController::class,'statDevisPaiement']);
 
     Route::get('/admin/import-devis-maison-travaux',[AdminImportController::class,'pageImportTravauxDevis'])->name('admin.maison_travaux_devis');
     Route::post('/admin/import-devis-maison-travaux',[AdminImportController::class,'storeDataCSV']);
